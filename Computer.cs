@@ -16,18 +16,29 @@ namespace Pract10
         private string? vram = null;
         private string? accumulator = null;
         private string? video = null;
+        public int id = -1;
         
         
-        public string Proc { get
+        public string Proc { 
+            get
             {
                 return proc;
-            } }
+            }
+            set
+            {
+                proc = value;
+            }
+        }
 
         public string Vram
         {
             get
             {
                 return vram;
+            }
+            set
+            {
+                vram = value;
             }
         }
         public string Accumulator
@@ -36,6 +47,10 @@ namespace Pract10
             {
                 return accumulator;
             }
+            set
+            {
+                accumulator = value;
+            }
         }
         public string Video
         {
@@ -43,9 +58,11 @@ namespace Pract10
             {
                 return video;
             }
+            set
+            {
+                video = value;
+            }
         }
-
-        List<Computer> list = new();
 
 
         public void addProc(string procces)
@@ -80,27 +97,52 @@ namespace Pract10
             }
         }
 
-        public bool Build()
+        public bool Build(Computer cp)
         {
-            if (proc != null && vram != null && accumulator != null && video != null)
+            try
             {
+                if (proc != null && vram != null && accumulator != null && video != null)
+                {
+                    
+                    int i = 0;
+                    if (cp.id == -1)
+                    {
+                        while (File.Exists($"comp{i}.json"))
+                        {
+                            i++;
+                        }
+                    }
+                    else
+                        i = cp.id;
 
-                return true;
+                    string filename = $"comp{i}.json";
+                    string json = JsonSerializer.Serialize(cp);
+                    File.WriteAllText(filename, json);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
                 return false;
             }
         }
 
-        public void Clone(Computer cp)
+        public static void Clone(Computer cp)
         {
-            string jsonString = JsonSerializer.Serialize(cp);
+            
             int i = 0;
 
             while (File.Exists($"comp{i}.json"))
                 i++;
 
+            cp.id = i;
+
+            string jsonString = JsonSerializer.Serialize(cp);
             string fileName = $"comp{i}.json";
             File.WriteAllText(fileName, jsonString);
         }

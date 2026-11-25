@@ -19,46 +19,15 @@ namespace Pract10
     public partial class MainWindow : Window
     {
 
-        List<Computer> list { get; set; } = new();
-
-        public string curProc { get; set; } ="";
-        public string curVram { get; set; } = "";
-        public string curAcum { get; set; } = "";
-        public string curVideo { get; set; } = "";
+       
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Computer t = new();
-
-            
-
-            GetList();
+            MainFrame.Navigate(new Pages.MainPage());
         }
 
-        void GetList()
-        {
-            list.Clear();
-
-            int i = 0;
-
-            while (File.Exists($"comp{i}.json"))
-            {
-                string fileName = $"comp{i}.json";
-                string jsonString = File.ReadAllText(fileName);
-                list.Add(JsonSerializer.Deserialize<Computer>(jsonString));
-                i++;
-            }
-
-
-        }
-
-        private void Create(object sender, RoutedEventArgs e)
-        {
-            Computer cp = new();
-
-            cp.addRam("");
-        }
+   
     }
 }
