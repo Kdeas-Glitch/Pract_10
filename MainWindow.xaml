@@ -1,0 +1,60 @@
+﻿<Window x:Class="Pract10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pract10"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <ListView Grid.Column="0" DataContext="list">
+            <TextBlock Text="{Binding Proc}"></TextBlock>
+            <TextBlock Text="{Binding Vram}"></TextBlock>
+            <TextBlock Text="{Binding Accumulator}"></TextBlock>
+            <TextBlock Text="{Binding Video}"></TextBlock>
+        </ListView>
+
+        <StackPanel Grid.Column="1">
+            <StackPanel>
+                <TextBlock>Процессор:</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem>intel</ComboBoxItem>
+                    <ComboBoxItem>amd</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock>Объем оперативной памяти:</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem>8 битов</ComboBoxItem>
+                    <ComboBoxItem>1 КилоБайт</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock>Накопитель:</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem>SSD</ComboBoxItem>
+                    <ComboBoxItem>HDD</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Видео карта:</TextBlock>
+                <ComboBox SelectedItem="{Binding curVideo,UpdateSourceTrigger=LostFocus}">
+                    <ComboBoxItem>GeForce</ComboBoxItem>
+                    <ComboBoxItem>Radeon</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Click="Create">Создать конфигурацию</Button>
+            <Button>Скопировать конфигурацию</Button>
+
+        </StackPanel>
+    </Grid>
+</Window>
