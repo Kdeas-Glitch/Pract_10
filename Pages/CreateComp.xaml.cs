@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,9 +29,11 @@ namespace Pract10.Pages
 
         public Computer t = new();
 
-        public CreateComp(Computer r)
-        {
+        bool copy = false;
 
+        public CreateComp(Computer r,bool c)
+        {
+            copy = c;
             InitializeComponent();
 
 
@@ -69,7 +73,21 @@ namespace Pract10.Pages
 
         private void Create(object sender, RoutedEventArgs e)
         {
-            if (t.Build(t))
+            if (copy)
+            {
+                Computer cp = Computer.Clone(t);
+
+                string jsonString = JsonSerializer.Serialize(cp);
+                string fileName = $"comp{cp.id}.json";
+                File.WriteAllText(fileName, jsonString);
+
+
+                MessageBox.Show("Успешно");
+                NavigationService.GoBack();
+                return;
+            }
+
+            if (t.Build(t)!=null)
             {
                 MessageBox.Show("Успешно");
                 NavigationService.GoBack();
@@ -84,36 +102,36 @@ namespace Pract10.Pages
         {
             Stack1.Visibility= Visibility.Visible;
             if (curProc == 0)
-                t.addProc("intel");
+                t=t.addProc("intel");
             else
-                t.addProc("amd");
+                t=t.addProc("amd");
         }
 
         private void VramSelect(object sender, SelectionChangedEventArgs e)
         {
             Stack2.Visibility = Visibility.Visible;
             if (curVram == 0)
-                t.addRam("8 битов");
+                t=t.addRam("8 битов");
             else
-                t.addRam("1 КилоБайт");
+                t=t.addRam("1 КилоБайт");
         }
 
         private void AcumSelect(object sender, SelectionChangedEventArgs e)
         {
             Stack3.Visibility = Visibility.Visible;
             if (curAcum == 0)
-                t.addAcum("SSD");
+                t=t.addAcum("SSD");
             else
-                t.addAcum("HDD");
+                t=t.addAcum("HDD");
         }
 
         private void VideoSelect(object sender, SelectionChangedEventArgs e)
         {
             Buttton.Visibility = Visibility.Visible;
             if (curVideo == 0)
-                t.addVideo("GeForce");
+                t=t.addVideo("GeForce");
             else
-                t.addVideo("Radeon");
+                t=t.addVideo("Radeon");
         }
 
         private void Back(object sender, RoutedEventArgs e)

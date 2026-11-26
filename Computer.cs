@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -65,39 +66,45 @@ namespace Pract10
         }
 
 
-        public void addProc(string procces)
+        public Computer addProc(string procces)
         {
             if (!string.IsNullOrEmpty(procces))
             {
                 proc = procces;
+                return this;
             }
+            return this;
+            
         }
 
-        public void addRam(string ram)
+        public Computer addRam(string ram)
         {
             if (!string.IsNullOrEmpty(ram))
             {
                 vram = ram;
             }
-        }
+            return this;
+        }   
 
-        public void addAcum(string ac)
+        public Computer addAcum(string ac)
         {
             if (!string.IsNullOrEmpty(ac))
             {
                 accumulator = ac;
             }
+            return this;
         }
 
-        public void addVideo(string v)
+        public Computer addVideo(string v)
         {
             if (!string.IsNullOrEmpty(v))
             {
                 video = v;
             }
+            return this;
         }
 
-        public bool Build(Computer cp)
+        public Computer? Build(Computer cp)
         {
             try
             {
@@ -119,22 +126,21 @@ namespace Pract10
                     string json = JsonSerializer.Serialize(cp);
                     File.WriteAllText(filename, json);
 
-                    return true;
+                    return this;
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 
-        public static void Clone(Computer cp)
+        public static Computer Clone(Computer cp)
         {
-            
             int i = 0;
 
             while (File.Exists($"comp{i}.json"))
@@ -142,9 +148,7 @@ namespace Pract10
 
             cp.id = i;
 
-            string jsonString = JsonSerializer.Serialize(cp);
-            string fileName = $"comp{i}.json";
-            File.WriteAllText(fileName, jsonString);
+            return cp;
         }
     }
 }

@@ -31,7 +31,7 @@
         <StackPanel Grid.Column="1">
 
             <Button Click="Create">Создать конфигурацию</Button>
-            <Button Click="Copy">Скопировать конфигурацию</Button>
+            <!--<Button Click="Copy">Скопировать конфигурацию</Button>-->
             <Button Click="CopyCreate">Скопировать и изменить конфигурацию</Button>
 
         </StackPanel>

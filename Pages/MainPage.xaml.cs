@@ -65,7 +65,7 @@ namespace Pract10.Pages
 
         private void Create(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateComp(cur));
+            NavigationService.Navigate(new CreateComp(cur,false));
         }
 
         private void ProcSelect(object sender, SelectionChangedEventArgs e)
@@ -89,8 +89,12 @@ namespace Pract10.Pages
             if (cur != null)
             {
                 cur.id = -1;
-                NavigationService.Navigate(new CreateComp(cur));
+                NavigationService.Navigate(new CreateComp(cur,true));
                 cur = null;
+            }
+            else
+            {
+                MessageBox.Show("Выберите данные");
             }
         }
     }

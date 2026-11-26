@@ -44,3 +44,7 @@ C:\Users\HardShop\Desktop\Projects\Pract_10\obj\Debug\net8.0-windows\Pract10.gen
 C:\Users\HardShop\Desktop\Projects\Pract_10\obj\Debug\net8.0-windows\ref\Pract10.dll
 C:\Users\HardShop\Desktop\Projects\Pract_10\obj\Debug\net8.0-windows\Pages\CreateComp.g.cs
 C:\Users\HardShop\Desktop\Projects\Pract_10\obj\Debug\net8.0-windows\Pages\CreateComp.baml
+C:\Users\st310-04\Desktop\Демин\Pract10\obj\Debug\net8.0-windows\Pages\CreateComp.g.cs
+C:\Users\st310-04\Desktop\Демин\Pract10\obj\Debug\net8.0-windows\Pages\MainPage.g.cs
+C:\Users\st310-04\Desktop\Демин\Pract10\obj\Debug\net8.0-windows\Pages\CreateComp.baml
+C:\Users\st310-04\Desktop\Демин\Pract10\obj\Debug\net8.0-windows\Pages\MainPage.baml
